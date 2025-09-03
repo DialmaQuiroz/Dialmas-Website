@@ -2,10 +2,386 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Personal Site</title>
+  <title>Dialma's Internet Corner</title>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript"> <!--This is a free resources to add cool sparkles on your cursor!-->
+// <![CDATA[
+var colour= "red"; // in addition to "random" can be set to any valid colour eg "#f0f" or "red"
+var sparkles=50;
+
+/****************************
+*  Tinkerbell Magic Sparkle *
+*(c)2005-13 mf2fm web-design*
+*  http://www.mf2fm.com/rv  *
+* DON'T EDIT BELOW THIS BOX *
+****************************/
+var x=ox=400;
+var y=oy=300;
+var swide=800;
+var shigh=600;
+var sleft=sdown=0;
+var tiny=new Array();
+var star=new Array();
+var starv=new Array();
+var starx=new Array();
+var stary=new Array();
+var tinyx=new Array();
+var tinyy=new Array();
+var tinyv=new Array();
+
+window.onload=function() { if (document.getElementById) {
+  var i, rats, rlef, rdow;
+  for (var i=0; i<sparkles; i++) {
+    var rats=createDiv(3, 3);
+    rats.style.visibility="hidden";
+    rats.style.zIndex="999";
+    document.body.appendChild(tiny[i]=rats);
+    starv[i]=0;
+    tinyv[i]=0;
+    var rats=createDiv(5, 5);
+    rats.style.backgroundColor="transparent";
+    rats.style.visibility="hidden";
+    rats.style.zIndex="999";
+    var rlef=createDiv(1, 5);
+    var rdow=createDiv(5, 1);
+    rats.appendChild(rlef);
+    rats.appendChild(rdow);
+    rlef.style.top="2px";
+    rlef.style.left="0px";
+    rdow.style.top="0px";
+    rdow.style.left="2px";
+    document.body.appendChild(star[i]=rats);
+  }
+  set_width();
+  sparkle();
+}}
+
+function sparkle() {
+  var c;
+  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+    ox=x;
+    oy=y;
+    for (c=0; c<sparkles; c++) if (!starv[c]) {
+      star[c].style.left=(starx[c]=x)+"px";
+      star[c].style.top=(stary[c]=y+1)+"px";
+      star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+      star[c].childNodes[0].style.backgroundColor=star[c].childNodes[1].style.backgroundColor=(colour=="random")?newColour():colour;
+      star[c].style.visibility="visible";
+      starv[c]=50;
+      break;
+    }
+  }
+  for (c=0; c<sparkles; c++) {
+    if (starv[c]) update_star(c);
+    if (tinyv[c]) update_tiny(c);
+  }
+  setTimeout("sparkle()", 40);
+}
+
+function update_star(i) {
+  if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+  if (starv[i]) {
+    stary[i]+=1+Math.random()*3;
+    starx[i]+=(i%5-2)/5;
+    if (stary[i]<shigh+sdown) {
+      star[i].style.top=stary[i]+"px";
+      star[i].style.left=starx[i]+"px";
+    }
+    else {
+      star[i].style.visibility="hidden";
+      starv[i]=0;
+      return;
+    }
+  }
+  else {
+    tinyv[i]=50;
+    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+    tiny[i].style.width="2px";
+    tiny[i].style.height="2px";
+    tiny[i].style.backgroundColor=star[i].childNodes[0].style.backgroundColor;
+    star[i].style.visibility="hidden";
+    tiny[i].style.visibility="visible"
+  }
+}
+
+function update_tiny(i) {
+  if (--tinyv[i]==25) {
+    tiny[i].style.width="1px";
+    tiny[i].style.height="1px";
+  }
+  if (tinyv[i]) {
+    tinyy[i]+=1+Math.random()*3;
+    tinyx[i]+=(i%5-2)/5;
+    if (tinyy[i]<shigh+sdown) {
+      tiny[i].style.top=tinyy[i]+"px";
+      tiny[i].style.left=tinyx[i]+"px";
+    }
+    else {
+      tiny[i].style.visibility="hidden";
+      tinyv[i]=0;
+      return;
+    }
+  }
+  else tiny[i].style.visibility="hidden";
+}
+
+document.onmousemove=mouse;
+function mouse(e) {
+  if (e) {
+    y=e.pageY;
+    x=e.pageX;
+  }
+  else {
+    set_scroll();
+    y=event.y+sdown;
+    x=event.x+sleft;
+  }
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  if (typeof(self.pageYOffset)=='number') {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+    sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+
+function createDiv(height, width) {
+  var div=document.createElement("div");
+  div.style.position="absolute";
+  div.style.height=height+"px";
+  div.style.width=width+"px";
+  div.style.overflow="hidden";
+  return (div);
+}
+
+function newColour() {
+  var c=new Array();
+  c[0]=255;
+  c[1]=Math.floor(Math.random()*256);
+  c[2]=Math.floor(Math.random()*(256-c[1]/2));
+  c.sort(function(){return (0.5 - Math.random());});
+  return ("rgb("+c[0]+", "+c[1]+", "+c[2]+")");
+}
+// ]]>
+</script> <!--Cool mouse cursor ends here!-->
 </head>
 <body>
-  <!-- Add your HTML content here -->
+  <!-- Header with navigation -->
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="#hero" class="nav-btn">Home</a>
+      <a href="#bio" class="nav-btn">About</a>
+      <a href="#skills" class="nav-btn">Skills</a>
+      <a href="#projects" class="nav-btn">Projects</a>
+      <a href="#hobbies" class="nav-btn">Hobbies</a>
+      <a href="#contact" class="nav-btn">Contact</a>
+    </nav>
+    <div class="header-title">
+      <h1>🖤 Dialma's Corner 🖤</h1>
+    </div>
+  </header>
+
+  <!-- Columns container for three-column layout -->
+  <div class="columns-container">
+    <!-- Left column: music and interests -->
+    <div class="left-column">
+      <!-- Music Section -->
+      <section class="side-section music-section">
+        <h3 style="text-align:center;">🎵 Music I'm Listening To</h3>
+        <ul style="padding-left:18px;">
+          <li>Johnny Goth - Lately</li>
+          <li>Car Seat Headrest - Beast Monster Thing</li>
+          <li>Roar - You Could Have Been Anyone</li>
+          <li>The Symposium - Soft Love</li>
+        </ul>
+      </section>
+      <!-- Interests Section -->
+      <section class="side-section">
+        <h3 style="text-align:center;">My Special Interests</h3>
+        <img src="https://img1.picmix.com/output/pic/normal/2/8/3/6/10956382_d18e3.gif" alt="Roy Mustang :3" style="display:block; margin:0 auto; border-radius:12px; border:2px solid #b3001b; width:90%; max-width:140px;">
+        <p style="text-align:center; font-size:0.95em; margin-top:0.5em;">Roy Mustang</p>
+        <img src="https://img1.picmix.com/output/pic/thumb/3/2/9/9/12429923_28921.gif" alt="Fritz Ludwig :3" style="display:block; margin:0 auto; border-radius:12px; border:2px solid #b3001b; width:90%; max-width:140px;">
+        <p style="text-align:center; font-size:0.95em; margin-top:0.5em;">Medic!</p>
+        <img src="https://img1.picmix.com/output/pic/normal/0/0/9/6/11056900_afb2e.gif" alt="Jerma985 :3" style="display:block; margin:0 auto; border-radius:12px; border:2px solid #b3001b; width:90%; max-width:140px;">
+        <p style="text-align:center; font-size:0.95em; margin-top:0.5em;">Jerma985</p>
+        <img src="https://img1.picmix.com/output/pic/normal/8/4/9/1/11831948_0f6da.gif" alt="VINNY :3" style="display:block; margin:0 auto; border-radius:12px; border:2px solid #b3001b; width:90%; max-width:140px;">
+        <p style="text-align:center; font-size:0.95em; margin-top:0.5em;">Vinny Vinesauce</p>
+
+      </section>
+    </div>
+    <!-- Center column (main content) -->
+    <div class="center-column">
+      <!-- Hero Section -->
+      <section id="hero" class="hero-area">
+        <div class="sparkle-widget" title="Sparkle!">🩸</div>
+        <img src="ME!.png" alt="Profile picture" class="profile-pic">
+        <h2>Hey, I'm Dialma!</h2>
+        <p>Undergrad Game Dev | VR Researcher | Digital Media Specialist</p>
+        <div class="stamps-row">
+          <img src="https://gifcity.carrd.co/assets/images/gallery39/29728a1d.gif?v=e3c0bc0f">
+      </section>
+
+      <!-- Bio Section -->
+      <section id="bio" class="bio-section">
+        <h3>About Me</h3>
+        <p>
+          I'm a Game Development student at the University of Utah. I am passionate for immersive experiences, game design, and digital media. This site is my digital diary where I share my journey, projects, and special interests! :3
+        </p>
+        <div class="badge-row">
+          <span class="badge" title="HTML5">⛓️</span>
+          <span class="badge" title="CSS3">🦇</span>
+          <span class="badge" title="Emo">🖤</span>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills-section">
+        <h3>Skills</h3>
+        <ul class="skills-list">
+          <li>Autodesk Maya</li>
+          <li>Adobe CC</li>
+          <li>JavaScript (learning!)</li>
+          <li>Python</li>
+          <li>Unreal Engine</li>
+          <li>Canva</li>
+        </ul>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects-section">
+        <h3>Projects</h3>
+        <div class="project-card">
+          <h4>Art Portfolio</h4>
+          <p>Includes 2D/3D art, animations, and game art projects! (ﾉ´ヮ`)ﾉ*: ･ﾟ</p>
+          <a href="https://zestfulzalyn.artstation.com/" class="nav-btn">View Project</a>
+        </div>
+        <div class="project-card">
+          <h4>Stamp & Widget Gallery</h4>
+          <p>A collection of emo-inspired widgets and internet stamps for your own site.</p>
+          <a href="#" class="nav-btn">View Project</a>
+        </div>
+        <!-- Add more project cards as you build them! -->
+      </section>
+
+      <!-- Hobbies Section -->
+      <section id="hobbies" class="hobbies-section">
+        <h3>Hobbies</h3>
+        <ul>
+          <li>Drawing and digital art</li>
+          <li>Listening to emo & punk music</li>
+          <li>Collecting internet stamps</li>
+          <li>Playing indie games</li>
+          <li>Exploring retro web design</li>
+        </ul>
+        <div class="widgets-row">
+          <img src="https://i.imgur.com/8Km9tLL.png" alt="Kitten Widget" class="widget" title="Kitten Widget">
+          <img src="https://i.imgur.com/5cX1F5R.png" alt="Music Widget" class="widget" title="Music Widget">
+          <img src="https://i.imgur.com/2yaf2wb.png" alt="Game Widget" class="widget" title="Game Widget">
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <h3>Contact Me</h3>
+        <p>Let's connect. Message me for collabs, questions, or to share your favorite band.</p>
+        <a href="mailto:your.email@example.com" class="contact-btn">Email Me</a>
+        <a href="https://github.com/yourusername" class="contact-btn" target="_blank">GitHub</a>
+        <a href="https://twitter.com/yourusername" class="contact-btn" target="_blank">Twitter</a>
+      </section>
+    </div>
+    <!-- Right column: favorite images and stamps -->
+    <div class="right-column">
+      <!-- Favorite Images Section -->
+      <section class="side-section favimg-section">
+        <img src="https://64.media.tumblr.com/f2c3ecd8da2cd342f21e7c302ded00aa/67397cf590d2dfa9-f5/s500x750/7cfc867f68a01f129943c96a171a4bc795b0f931.gifv" alt="Fav 1" style="width:190px; margin:4px; border-radius:8px; border:2px solid #b3001b;">
+      </section>
+      <!-- Stamps box -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:8px;">
+        <!-- Each stamp is inside a box with a white background and border -->
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/a57.png" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/e45.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/d86.png" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/k7.png" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/b53.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/e87.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/stamps/e112.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/x19.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/q3.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/v26.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://adriansblinkiecollection.neocities.org/k36.gif" width="130px">
+        </div>
+        <div style="background-color:#fff; box-shadow:4px 4px 0px rgba(35,35,35,0.18); border:2px ridge #ecaccb; width:130px; border-radius:6px; padding:6px; display:flex; justify-content:center;">
+          <img src="https://64.media.tumblr.com/f86017dc79f47be7a3fcea70ad143673/tumblr_purr70DWAQ1xzned5o6_250.gifv" width="130px">
+        </div>
+      </div>
+      <!-- You can add widgets, images, or decorations here! -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div>Made with 🖤 and late night playlists.</div>
+    <div class="footer-sparkle">✧･ﾟ: *･ﾟ:*🩸*:･ﾟ✧*:･ﾟ✧</div>
+    <div style="font-size:0.9em; margin-top:0.5em;">&copy; 2024 Dialma</div>
+  </footer>
 </body>
 </html>

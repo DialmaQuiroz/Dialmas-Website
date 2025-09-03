@@ -1,1 +1,308 @@
-/* Add you CSS here */
+body {
+  background: linear-gradient(135deg, #18181b 0%, #2d2d31 100%);
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  color: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  cursor: url('MEDIC!.png'), auto;
+}
+
+.site-header {
+  background: #18181b;
+  border-bottom: 3px solid #b3001b;
+  padding: 1rem 0 0.5rem 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  margin-bottom: 0.5rem;
+}
+
+.nav-btn {
+  display: inline-block;
+  background: #b3001b;
+  color: #e5e5e5;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  padding: 0.4em 1em;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+  border: 1.5px solid #e5e5e5;
+}
+
+.nav-btn:hover {
+  background: #e50914;
+  color: #18181b;
+}
+
+.header-title h1 {
+  font-size: 2rem;
+  margin: 0.2em 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 2px 0 #000, 0 0 10px #b3001b;
+  color: #e50914;
+}
+
+.hero-area {
+  text-align: center;
+  padding: 2em 1em 1em 1em;
+  background: #232326;
+  margin: 1em auto;
+  border-radius: 24px;
+  max-width: 600px;
+  box-shadow: 0 2px 12px #b3001b55;
+  position: relative;
+  border: 2px solid #b3001b;
+}
+
+.sparkle-widget {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 2em;
+  animation: sparkle 1.5s infinite alternate;
+  color: #e50914;
+  filter: drop-shadow(0 0 6px #b3001b);
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.7; transform: scale(1);}
+  100% { opacity: 1; transform: scale(1.2);}
+}
+
+.profile-pic {
+  margin-top: 1em;
+  border-radius: 50%;
+  border: 4px solid #b3001b;
+  width: 120px;
+  height: 120px;
+  box-shadow: 0 0 12px #e5091488;
+}
+
+.bio-section, .skills-section, .projects-section, .hobbies-section, .contact-section {
+  background: #232326;
+  margin: 1.5em auto;
+  padding: 1.5em 1em;
+  border-radius: 18px;
+  max-width: 600px;
+  box-shadow: 0 1px 8px #b3001b33;
+  border: 2px solid #18181b;
+}
+
+.stamps-row {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.stamp {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid #b3001b;
+  background: #18181b;
+  box-shadow: 0 0 8px #b3001b55;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  transition: box-shadow 0.3s;
+}
+
+.skills-list li {
+  background: #18181b;
+  color: #e50914;
+  padding: 0.5em 1em;
+  border-radius: 16px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  border: 1.5px solid #b3001b;
+  box-shadow: 0 0 6px #b3001b33;
+}
+
+.skills-list li:hover {
+  box-shadow: 0 0 16px 4px #e50914;
+  transition: box-shadow 0.3s;
+}
+
+.skills-list li {
+  transition: box-shadow 0.3s;
+}
+
+.badge-row {
+  margin-top: 0.7em;
+  text-align: center;
+}
+
+.badge {
+  font-size: 1.5em;
+  margin: 0 0.3em;
+  filter: drop-shadow(0 0 2px #b3001b);
+}
+
+.project-card {
+  background: #18181b;
+  border: 2px solid #b3001b;
+  border-radius: 12px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: 0 1px 6px #b3001b33;
+  color: #e5e5e5;
+}
+
+.hobbies-section ul {
+  list-style: square inside;
+  padding-left: 0;
+  color: #e5e5e5;
+}
+
+.widgets-row {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.widget {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  border: 2px solid #b3001b;
+  background: #18181b;
+  box-shadow: 0 0 8px #b3001b55;
+}
+
+.contact-section a.contact-btn {
+  display: inline-block;
+  background: #b3001b;
+  color: #e5e5e5;
+  text-decoration: none;
+  margin: 0.3em 0.7em 0.3em 0;
+  padding: 0.4em 1em;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+  border: 1.5px solid #e5e5e5;
+}
+
+.contact-section a.contact-btn:hover {
+  background: #e50914;
+  color: #18181b;
+}
+
+.site-footer {
+  background: #18181b;
+  border-top: 3px solid #b3001b;
+  text-align: center;
+  padding: 1em 0 0.5em 0;
+  margin-top: 2em;
+  font-size: 1em;
+  color: #b3b3b3;
+}
+
+.footer-sparkle {
+  font-size: 1.2em;
+  color: #e50914;
+  margin-top: 0.3em;
+  filter: drop-shadow(0 0 2px #b3001b);
+}
+
+.columns-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+.left-column, .center-column, .right-column {
+  float: left;
+  min-height: 10px;
+}
+
+.left-column {
+  width: 20%;
+  order: 1;
+  background-image: url(https://file.garden/aAdIXYazImdyc4Ee/Backgrounds/sidebarbg.png);
+  background-size: 255px, 1000px;
+  background-repeat: round;
+  height: 1300px;
+}
+
+.center-column {
+  width: 60%;
+  flex: 1;
+  order: 2;
+  text-align: justify;
+  max-width: 610px;
+  margin-left: 15px;
+  margin-right: 15px;
+  background-image: url(https://file.garden/aAdIXYazImdyc4Ee/Backgrounds/mainbg1.png);
+  background-size: 630px, 2800px;
+  background-repeat: round;
+  height: 2100px;
+}
+
+.right-column {
+  width: 20%;
+  width: 20%;
+  order: 1;
+  background-image: url(https://file.garden/aAdIXYazImdyc4Ee/Backgrounds/sidebarbg.png);
+  background-size: 255px, 1000px;
+  background-repeat: round;
+  height: 1300px;
+}
+
+.site-header, .site-footer {
+  clear: both;
+}
+
+@media (max-width: 900px) {
+  .left-column, .center-column, .right-column {
+    float: none;
+    width: 100%;
+  }
+  .columns-container {
+    margin-top: 0.5em;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-area, .bio-section, .skills-section, .projects-section, .hobbies-section, .contact-section {
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
+  .header-title h1 {
+    font-size: 1.2rem;
+  }
+}
+
+.side-section {
+  background: #232326;
+  border: 2px solid #18181b;
+  border-radius: 14px;
+  box-shadow: 0 1px 8px #b3001b33;
+  margin: 1em 0.5em;
+  padding: 1em 0.5em;
+  color: #e5e5e5;
+  font-size: 1em;
+}
+
+.side-section img {
+  display: block;
+  margin: 0.5em auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #b3001b;
+}
